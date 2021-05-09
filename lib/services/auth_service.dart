@@ -73,17 +73,16 @@ class AuthService {
       return await setProfileAndIdToken(result);
     } on PlatformException {
       return 'User has cancelled or no internet!';
-    } catch (e, s) {
-      print(e);
-      print(s);
+    } catch (e) {
       return 'Unkown Error!';
     }
   }
 
   Future<String> setProfileAndIdToken(result) async {
-    if (result != null &&
-        result.accessToken != null &&
-        result.idToken != null) {
+    final bool isValidResult =
+        result != null && result.accessToken != null && result.idToken != null;
+
+    if (isValidResult) {
       //
       print('idToken ${result.idToken}');
       //
@@ -133,7 +132,6 @@ class AuthService {
     final Map<String, dynamic> json = jsonDecode(
         utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
 
-    print(json);
     return Auth0IdToken.fromJson(json);
   }
 

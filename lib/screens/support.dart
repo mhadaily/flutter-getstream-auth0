@@ -52,18 +52,7 @@ class _ChatViewState extends State<ChatView> {
                   child: MessageListView(),
                 ),
                 MessageInput(
-                  actions: [
-                    CommonButton(
-                      padding: EdgeInsets.all(0),
-                      onPressed: () {
-                        ChatService.instance.archiveSupportChat();
-                      },
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    )
-                  ],
+                  actions: [_closeChat()],
                   disableAttachments: !profile!.can(UserPermissions.upload),
                   sendButtonLocation: SendButtonLocation.inside,
                   actionsLocation: ActionsLocation.leftInside,
@@ -72,5 +61,18 @@ class _ChatViewState extends State<ChatView> {
               ],
             ),
           );
+  }
+
+  CommonButton _closeChat() {
+    return CommonButton(
+      padding: EdgeInsets.all(0),
+      onPressed: () {
+        ChatService.instance.archiveSupportChat();
+      },
+      child: Icon(
+        Icons.close,
+        color: Colors.red,
+      ),
+    );
   }
 }

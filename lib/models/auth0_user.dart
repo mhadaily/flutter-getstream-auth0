@@ -44,10 +44,8 @@ class Auth0User {
 
   final String sub;
   final String email;
-
   final String getStreamToken;
   final List<Auth0Permission> permissions;
-
   final List<Auth0Role> roles;
 
   factory Auth0User.fromJson(Map<String, dynamic> json) =>
