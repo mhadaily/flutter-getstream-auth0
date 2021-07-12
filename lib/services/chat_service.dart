@@ -19,9 +19,8 @@ class ChatService {
   );
 
   Future<void> disconnect() {
-    return client.disconnect(
+    return client.disconnectUser(
       flushChatPersistence: true,
-      clearUser: true,
     );
   }
 
